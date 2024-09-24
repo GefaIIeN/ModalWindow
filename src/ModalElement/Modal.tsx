@@ -1,20 +1,15 @@
 import React from 'react';
 
 type Props = {
-    onCloseButtonClick: () => boolean,
-    show: boolean
+  isVisible: boolean
+    onClose: () => void
 }
 
 export const Modal =({
-    show,
-    onCloseButtonClick,
-
-}: Props): JSX.Element => {
-    if (!show) {
-      return <></>;
-    }
-  
-    return (
+  isVisible,
+  onClose,
+}: Props): JSX.Element|null => {
+    return isVisible ? (
       <div className="modal-wrapper">
         <div className="modal">
           <div className="body">
@@ -22,12 +17,12 @@ export const Modal =({
           </div>
           <div className="footer">
           <button 
-            onClick={() => {onCloseButtonClick}}>{`Закрыть`}
+            onClick={() => {onClose()}}>{`Закрыть`}
           </button>
 
           </div>
         </div>
       </div>
-    );
+    ) : null;
   };
   
